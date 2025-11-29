@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizza Party's Piano Recital</title>
+    <title>Piano Recital Program</title>
     <style>
-        /* 기본 설정: 흑백 테마, 모바일 가독성 최우선 */
+        /* 기본 설정 */
         body {
-            font-family: 'Times New Roman', serif; /* 클래식한 느낌 */
+            font-family: 'Times New Roman', serif;
             background-color: #ffffff;
             color: #000000;
             margin: 0;
             padding: 20px;
-            line-height: 1.6;
+            line-height: 1.5;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 중앙 정렬 컨테이너 */
         .container {
             max-width: 600px;
             margin: 0 auto;
         }
 
-        /* 헤더 스타일 */
+        /* 헤더: 전체 타이틀만 심플하게 */
         header {
             text-align: center;
             margin-bottom: 40px;
@@ -33,66 +32,96 @@
         h1 {
             font-size: 24px;
             margin: 0;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
         .subtitle {
             font-size: 14px;
-            color: #333;
+            color: #555;
             margin-top: 10px;
         }
 
-        /* 프로그램 리스트 스타일 */
+        /* 섹션 타이틀 (Part I, Part II) */
+        .section-wrapper {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+
         .section-title {
             font-size: 18px;
             font-weight: bold;
-            text-align: center;
-            margin-top: 30px;
-            margin-bottom: 20px;
-            text-decoration: underline;
-            text-underline-offset: 5px;
+            border-bottom: 1px solid #000;
+            display: inline-block;
+            padding-bottom: 5px;
         }
 
+        /* 프로그램 아이템 박스 */
         .program-item {
-            margin-bottom: 25px;
+            margin-bottom: 35px;
+            padding-bottom: 15px;
+            border-bottom: 1px dotted #ccc; /* 곡 간 구분을 위한 점선 */
+        }
+        
+        /* 마지막 아이템은 밑줄 제거 */
+        .program-item:last-child {
+            border-bottom: none;
         }
 
         .composer {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
-            margin-bottom: 4px;
+            color: #444;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .piece {
-            font-size: 15px;
-            font-style: italic;
-            margin-bottom: 2px;
+            font-size: 17px;
+            font-weight: 600;
+            margin: 3px 0;
         }
 
         .movement {
             font-size: 14px;
-            color: #444;
-            margin-left: 15px;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
         }
 
-        /* 인터미션 스타일 */
+        /* 연주자 이름 스타일 (우측 정렬 및 강조) */
+        .performer-row {
+            text-align: right; /* 오른쪽 정렬 */
+            margin-top: 8px;
+        }
+
+        .performer-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            background-color: #f4f4f4; /* 살짝 배경을 줘서 이름 강조 */
+            padding: 4px 10px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* 인터미션 */
         .intermission {
             text-align: center;
             margin: 50px 0;
             font-weight: bold;
             letter-spacing: 3px;
-            border-top: 1px solid #ddd;
-            border-bottom: 1px solid #ddd;
-            padding: 15px 0;
+            font-size: 14px;
+            color: #333;
         }
 
-        /* 푸터 */
         footer {
             text-align: center;
             margin-top: 50px;
             font-size: 12px;
-            color: #666;
+            color: #888;
+            padding-bottom: 20px;
         }
     </style>
 </head>
@@ -100,80 +129,110 @@
 
     <div class="container">
         <header>
-            <h1>🍕피자방🍕(가칭) 제 1회 정기연주회</h1>
+            <h1>Piano Recital</h1>
             <div class="subtitle">Program</div>
         </header>
 
-        <div class="section-title">Part I</div>
+        <div class="section-wrapper">
+            <div class="section-title">Part I</div>
+        </div>
 
         <div class="program-item">
             <div class="composer">Jean-Philippe Rameau</div>
             <div class="piece">Gavotte et six doubles</div>
-            <div class="movement">(from Suite in A minor, RCT 5/7)</div>
+            <div class="movement">from Suite in A minor, RCT 5/7</div>
+            <div class="performer-row">
+                <span class="performer-name">Pf. 별</span>
+            </div>
         </div>
 
         <div class="program-item">
             <div class="composer">Wolfgang Amadeus Mozart</div>
             <div class="piece">Piano Sonata No. 8 in A minor, K. 310</div>
             <div class="movement">I. Allegro maestoso</div>
+            <div class="performer-row">
+                <span class="performer-name">Pf. 뽀미사랑</span>
+            </div>
         </div>
 
         <div class="program-item">
             <div class="composer">Wolfgang Amadeus Mozart</div>
             <div class="piece">12 Variations on "Ah vous dirai-je, Maman," K. 265</div>
+            <div class="performer-row">
+                <span class="performer-name">Pf. 홍길동</span>
+            </div>
         </div>
 
         <div class="program-item">
             <div class="composer">Frédéric Chopin</div>
             <div class="piece">Nocturne No. 20 in C-sharp minor, Op. posth. (B. 49)</div>
+            <div class="performer-row">
+                <span class="performer-name">Pf. 뭉뭉</span>
+            </div>
         </div>
 
         <div class="program-item">
             <div class="composer">J.S. Bach / arr. F. Busoni</div>
             <div class="piece">Chaconne in D minor</div>
-            <div class="movement">(from Violin Partita No. 2, BWV 1004)</div>
+            <div class="movement">from Violin Partita No. 2, BWV 1004</div>
+            <div class="performer-row">
+                <span class="performer-name">Pf. 미니연</span>
+            </div>
         </div>
 
         <div class="intermission">INTERMISSION</div>
 
-        <div class="section-title">Part II</div>
+        <div class="section-wrapper">
+            <div class="section-title">Part II</div>
+        </div>
 
         <div class="program-item">
             <div class="composer">Robert Schumann</div>
             <div class="piece">Faschingsschwank aus Wien, Op. 26</div>
             <div class="movement">(Carnival Jest from Vienna)</div>
             <div class="movement">I. Allegro (Sehr lebhaft)</div>
+            <div class="performer-row">
+                <span class="performer-name">Pf. 가미</span>
+            </div>
         </div>
 
         <div class="program-item">
             <div class="composer">Claude Debussy</div>
             <div class="piece">Cloches à travers les feuilles</div>
-            <div class="movement">(Images, Book II, No. 1)</div>
+            <div class="movement">Images, Book II, No. 1</div>
+            <div class="performer-row">
+                <span class="performer-name">Pf. 프렐류드</span>
+            </div>
         </div>
 
         <div class="program-item">
             <div class="composer">Frédéric Chopin</div>
             <div class="piece">Nocturne in D-flat major, Op. 27, No. 2</div>
+            <div class="performer-row">
+                <span class="performer-name">Pf. 무지</span>
+            </div>
         </div>
 
         <div class="program-item">
             <div class="composer">Sergei Rachmaninoff</div>
             <div class="piece">Piano Sonata No. 2 in B-flat minor, Op. 36</div>
             <div class="movement">II. Non allegro</div>
+            <div class="performer-row">
+                <span class="performer-name">Pf. 피미니</span>
+            </div>
         </div>
 
         <div class="program-item">
             <div class="composer">Frédéric Chopin</div>
             <div class="piece">Prélude in C-sharp minor, Op. 45</div>
-        </div>
-
-        <div class="program-item">
-            <div class="composer">Frédéric Chopin</div>
             <div class="piece">Ballade No. 1 in G minor, Op. 23</div>
+            <div class="performer-row">
+                <span class="performer-name">Pf. 로저</span>
+            </div>
         </div>
 
         <footer>
-            피자방 화이팅.
+            Thank you for attending.
         </footer>
     </div>
 
