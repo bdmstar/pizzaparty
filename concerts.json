@@ -137,6 +137,9 @@
   ]
 },
         {
+  "intermission": true 
+},
+        {
           "order": "04",
           "performer": "카카오프렌즈",
           "works": [
@@ -158,9 +161,6 @@
           "piece": "Préludes, Book 2, L. 123 - No. 8 \"Ondine\"",
           "movement": ""
         },
-{
-  "intermission": true 
-},
         {
           "order": "06",
           "performer": "미니연",
