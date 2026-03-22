@@ -1,39 +1,174 @@
-function showConcert(concert) {
-    const concertContainer = document.getElementById('concert');
-    concertContainer.innerHTML = '';
-
-    if (Array.isArray(concert.composers)) {
-        concert.composers.forEach(composer => {
-            const composerElement = document.createElement('div');
-            composerElement.className = 'composer';
-            composerElement.innerHTML = `<strong>${composer.name}</strong>`;
-
-            if (Array.isArray(composer.works)) {
-                const worksList = document.createElement('ul');
-                composer.works.forEach(work => {
-                    const workItem = document.createElement('li');
-                    workItem.textContent = work.title;
-                    worksList.appendChild(workItem);
-                });
-                composerElement.appendChild(worksList);
-            }
-            concertContainer.appendChild(composerElement);
-        });
-    } else {
-        // Handle single composer format
-        const composerElement = document.createElement('div');
-        composerElement.className = 'composer';
-        composerElement.innerHTML = `<strong>${concert.composers.name}</strong>`;
-
-        if (Array.isArray(concert.composers.works)) {
-            const worksList = document.createElement('ul');
-            concert.composers.works.forEach(work => {
-                const workItem = document.createElement('li');
-                workItem.textContent = work.title;
-                worksList.appendChild(workItem);
-            });
-            composerElement.appendChild(worksList);
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano Recital Program</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #ffffff;
+            color: #000000;
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
         }
-        concertContainer.appendChild(composerElement);
-    }
-}
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+        .date-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .date-selector select {
+            padding: 6px 10px;
+            font-size: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f4f4f4;
+            cursor: pointer;
+        }
+        .program-item {
+            margin-bottom: 35px;
+            padding-bottom: 15px;
+            border-bottom: 1px dotted #ccc;
+        }
+        .program-item:last-child {
+            border-bottom: none;
+        }
+        .work-section {
+            margin-bottom: 15px;
+        }
+        .composer {
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        .piece {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 3px 0 3px 10px;
+        }
+        .movement {
+            font-size: 13px;
+            color: #666;
+            font-style: italic;
+            margin-left: 10px;
+        }
+        .performer-row {
+            text-align: right;
+            margin-top: 8px;
+        }
+        .performer-name {
+            font-size: 13px;
+            font-weight: bold;
+            background-color: #f4f4f4;
+            padding: 4px 10px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="date-selector">
+            <select id="dateSelect" onchange="showConcert(this.value)">
+            </select>
+        </div>
+        <header>
+            <h1>Piano Recital</h1>
+            <div style="font-size: 14px; color: #555; margin-top: 10px;">Program</div>
+        </header>
+        <div id="concertContent"></div>
+        <footer>Thank you for attending.</footer>
+    </div>
+
+    <script>
+        let concertData = [];
+
+        async function loadConcerts() {
+            try {
+                const response = await fetch('./concerts.json');
+                const data = await response.json();
+                concertData = data.concerts;
+                concertData.sort((a, b) => new Date(b.date) - new Date(a.date));
+                renderDateSelector();
+                showConcert(0);
+            } catch (error) {
+                console.error('Error loading concerts:', error);
+            }
+        }
+
+        function renderDateSelector() {
+            const selectElement = document.getElementById('dateSelect');
+            selectElement.innerHTML = '';
+            concertData.forEach((concert, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = concert.dateDisplay;
+                selectElement.appendChild(option);
+            });
+        }
+
+        function showConcert(index) {
+            const concert = concertData[index];
+            const contentContainer = document.getElementById('concertContent');
+            document.getElementById('dateSelect').value = index;
+
+            let html = '';
+            concert.programs.forEach((program) => {
+                html += '<div class="program-item">';
+                
+                if (program.works && program.works.length > 0) {
+                    program.works.forEach((work) => {
+                        html += '<div class="work-section">';
+                        html += `<div class="composer">${work.composer}</div>`;
+                        html += `<div class="piece">${work.piece}</div>`;
+                        if (work.movement) {
+                            html += `<div class="movement">${work.movement}</div>`;
+                        }
+                        html += '</div>';
+                    });
+                } else {
+                    html += `<div class="composer">${program.composer}</div>`;
+                    html += `<div class="piece">${program.piece}</div>`;
+                    if (program.movement) {
+                        html += `<div class="movement">${program.movement}</div>`;
+                    }
+                }
+                
+                html += '<div class="performer-row">';
+                html += `<span class="performer-name">Pf. ${program.performer}</span>`;
+                html += '</div></div>';
+            });
+
+            contentContainer.innerHTML = html;
+        }
+
+        window.addEventListener('DOMContentLoaded', loadConcerts);
+    </script>
+</body>
+</html>
