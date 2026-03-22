@@ -11,22 +11,22 @@
             background-color: #ffffff;
             color: #000000;
             margin: 0;
-            padding: 0; /* 전체 너비 배경을 위해 바디 패딩 제거 */
+            padding: 0;
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 메인 컨텐츠 컨테이너 (여백을 여기서 줌) */
-        .container {
+        /* 탭 컨테이너 */
+        .tab-container {
             max-width: 600px;
             margin: 0 auto;
-            padding: 20px; 
+            padding: 20px;
         }
 
         /* 헤더 */
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             border-bottom: 2px solid #000;
             padding-bottom: 20px;
         }
@@ -42,6 +42,46 @@
             font-size: 14px;
             color: #555;
             margin-top: 10px;
+        }
+
+        /* 탭 버튼 스타일 */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #000;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .tab-btn.active {
+            background-color: #000;
+            color: #fff;
+            border-color: #000;
+        }
+
+        /* 콘텐츠 표시 */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         /* 섹션 타이틀 */
@@ -68,6 +108,13 @@
         
         .program-item:last-child {
             border-bottom: none;
+        }
+
+        .order {
+            font-size: 12px;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 3px;
         }
 
         .composer {
@@ -107,30 +154,6 @@
             display: inline-block;
         }
 
-        /* --- 인터미션 배너 스타일 (화면 꽉 차게) --- */
-        .intermission-banner {
-            background-color: #000; /* 검은 배경 */
-            color: #fff; /* 흰 글씨 */
-            text-align: center;
-            padding: 25px 0;
-            margin: 50px 0;
-            width: 100%;
-        }
-
-        .intermission-text {
-            font-size: 16px;
-            font-weight: bold;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-        }
-        
-        .intermission-sub {
-            font-size: 12px;
-            color: #ccc;
-            margin-top: 5px;
-            font-style: italic;
-        }
-
         footer {
             text-align: center;
             margin-top: 50px;
@@ -142,119 +165,88 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="tab-container">
         <header>
             <h1>Piano Recital</h1>
             <div class="subtitle">Program</div>
         </header>
 
-        <div class="section-wrapper">
-            <div class="section-title">Part I</div>
-        </div>
+        <!-- 탭 버튼들 -->
+        <div class="tabs" id="tabButtons"></div>
 
-        <div class="program-item">
-            <div class="composer">Jean-Philippe Rameau</div>
-            <div class="piece">Gavotte et six doubles</div>
-            <div class="movement">from Suite in A minor, RCT 5/7</div>
-            <div class="performer-row">
-                <span class="performer-name">Pf. 별</span>
-            </div>
-        </div>
-
-        <div class="program-item">
-            <div class="composer">Wolfgang Amadeus Mozart</div>
-            <div class="piece">Piano Sonata No. 8 in A minor, K. 310</div>
-            <div class="movement">I. Allegro maestoso</div>
-            <div class="performer-row">
-                <span class="performer-name">Pf. 뽀미사랑</span>
-            </div>
-        </div>
-
-        <div class="program-item">
-            <div class="composer">Wolfgang Amadeus Mozart</div>
-            <div class="piece">12 Variations on "Ah vous dirai-je, Maman," K. 265</div>
-            <div class="performer-row">
-                <span class="performer-name">Pf. 뉴클</span>
-            </div>
-        </div>
-
-        <div class="program-item">
-            <div class="composer">Frédéric Chopin</div>
-            <div class="piece">Nocturne No. 20 in C-sharp minor, Op. posth. (B. 49)</div>
-            <div class="performer-row">
-                <span class="performer-name">Pf. 뭉뭉</span>
-            </div>
-        </div>
-
-        <div class="program-item">
-            <div class="composer">J.S. Bach / arr. F. Busoni</div>
-            <div class="piece">Chaconne in D minor</div>
-            <div class="movement">from Violin Partita No. 2, BWV 1004</div>
-            <div class="performer-row">
-                <span class="performer-name">Pf. 미니연</span>
-            </div>
-        </div>
-    </div> 
-    <div class="intermission-banner">
-        <div class="intermission-text">Intermission</div>
-        <div class="intermission-sub">10 Minutes</div>
-    </div>
-
-    <div class="container">
-        
-        <div class="section-wrapper">
-            <div class="section-title">Part II</div>
-        </div>
-
-        <div class="program-item">
-            <div class="composer">Robert Schumann</div>
-            <div class="piece">Faschingsschwank aus Wien, Op. 26</div>
-            <div class="movement">(Carnival Jest from Vienna)</div>
-            <div class="movement">I. Allegro (Sehr lebhaft)</div>
-            <div class="performer-row">
-                <span class="performer-name">Pf. 가미</span>
-            </div>
-        </div>
-
-        <div class="program-item">
-            <div class="composer">Claude Debussy</div>
-            <div class="piece">Cloches à travers les feuilles</div>
-            <div class="movement">Images, Book II, No. 1</div>
-            <div class="performer-row">
-                <span class="performer-name">Pf. 프렐류드</span>
-            </div>
-        </div>
-
-        <div class="program-item">
-            <div class="composer">Frédéric Chopin</div>
-            <div class="piece">Nocturne in D-flat major, Op. 27, No. 2</div>
-            <div class="performer-row">
-                <span class="performer-name">Pf. 무지</span>
-            </div>
-        </div>
-
-        <div class="program-item">
-            <div class="composer">Sergei Rachmaninoff</div>
-            <div class="piece">Piano Sonata No. 2 in B-flat minor, Op. 36</div>
-            <div class="movement">II. Non allegro</div>
-            <div class="performer-row">
-                <span class="performer-name">Pf. 피미니</span>
-            </div>
-        </div>
-
-        <div class="program-item">
-            <div class="composer">Frédéric Chopin</div>
-            <div class="piece">Prélude in C-sharp minor, Op. 45</div>
-            <div class="piece">Ballade No. 1 in G minor, Op. 23</div>
-            <div class="performer-row">
-                <span class="performer-name">Pf. 로저</span>
-            </div>
-        </div>
+        <!-- 탭 콘텐츠 -->
+        <div id="tabContents"></div>
 
         <footer>
             Thank you for attending.
         </footer>
     </div>
+
+    <script>
+        let concertData = [];
+        let currentTab = 0;
+
+        // concerts.json 로드
+        async function loadConcerts() {
+            try {
+                const response = await fetch('concerts.json');
+                const data = await response.json();
+                concertData = data.concerts;
+                renderTabs();
+                showConcert(0);
+            } catch (error) {
+                console.error('Error loading concerts:', error);
+            }
+        }
+
+        // 탭 버튼 렌더링
+        function renderTabs() {
+            const tabButtonsContainer = document.getElementById('tabButtons');
+            tabButtonsContainer.innerHTML = '';
+
+            concertData.forEach((concert, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'tab-btn' + (index === 0 ? ' active' : '');
+                btn.textContent = concert.dateDisplay;
+                btn.onclick = () => showConcert(index);
+                tabButtonsContainer.appendChild(btn);
+            });
+        }
+
+        // 콘텐츠 렌더링
+        function showConcert(index) {
+            currentTab = index;
+            const concert = concertData[index];
+            const tabContentsContainer = document.getElementById('tabContents');
+            
+            // 탭 버튼 활성화 상태 업데이트
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+
+            // 콘텐츠 생성
+            let html = '';
+            concert.programs.forEach((program) => {
+                html += `
+                    <div class="program-item">
+                        <div class="order">No. ${program.order} [${program.performer}]</div>
+                        <div class="composer">${program.composer}</div>
+                        <div class="piece">${program.piece}</div>
+                        ${program.movement ? `<div class="movement">${program.movement}</div>` : ''}
+                        <div class="performer-row">
+                            <span class="performer-name">Pf. ${program.performer}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            tabContentsContainer.innerHTML = html;
+        }
+
+        // 페이지 로드 시 concerts 로드
+        window.addEventListener('DOMContentLoaded', loadConcerts);
+    </script>
 
 </body>
 </html>
