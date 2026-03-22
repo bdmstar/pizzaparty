@@ -169,11 +169,11 @@ function showConcert(index) {
     document.getElementById('dateSelect').value = index;
 
     let html = '';
-    concert.programs.forEach((program) => {
-        // 인터미션 항목인지 확인
+concert.programs.forEach((program) => {
+        // [핵심 수정] 인터미션 항목 처리
         if (program.intermission) {
-            html += `<div class="intermission-row">Intermission</div>`;
-            return; // 인터미션일 경우 아래 곡 정보 렌더링을 건너뜁니다.
+            html += `<div class="intermission-bar">INTERMISSION</div>`;
+            return; // 곡 정보 렌더링 건너뛰기
         }
 
         html += '<div class="program-item">';
