@@ -92,7 +92,7 @@
           "performer": "무지",
           "composer": "L. v. Beethoven",
           "piece": "Piano Sonata No. 15 in D Major, Op. 28 \"Pastorale\"",
-          "movement": "III. Scherzo: Allegro vivace / IV. Rondo: Allegro ma non troppo"
+          "movement": "III. Scherzo: Allegro vivace \nIV. Rondo: Allegro ma non troppo"
         },
         {
           "order": "02",
@@ -116,8 +116,8 @@
           "order": "03",
           "performer": "쏜힐",
           "composer": "R. Schumann",
-          "piece": "Kinderszenen, Op. 15 (Complete)",
-          "movement": ""
+          "piece": "Kinderszenen, Op. 15",
+          "movement": "1. Von fremden Ländern und Menschen\n2. Kuriose Geschichte\n3. Hasche-Mann\n4. Bittendes Kind\n5. Glückes genug\n6. Wichtige Begebenheit\n7. Träumerei\n8. Am Kamin\n9. Ritter vom Steckenpferd\n10. Fast zu ernst\n11. Fürchtenmachen\n12. Kind im Einschlummern\n13. Der Dichter spricht"
         },
         {
           "order": "04",
@@ -126,7 +126,7 @@
             {
               "composer": "R. Schumann",
               "piece": "Fantasiestücke, Op. 12",
-              "movement": "No. 1. Des Abends in D-flat Major / No. 3. Warum? in D-flat Major"
+              "movement": "No. 1. Des Abends in D-flat Major \nNo. 3. Warum? in D-flat Major"
             },
             {
               "composer": "F. Chopin",
