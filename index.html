@@ -71,6 +71,10 @@
             color: #666;
             font-style: italic;
             margin-left: 10px;
+            /* ★ 핵심 수정: 이 설정이 있어야 \n 또는 실제 줄바꿈이 화면에 보입니다 */
+            white-space: pre-wrap; 
+            margin-top: 5px;
+            display: block;
         }
         .performer-row {
             text-align: right;
@@ -109,6 +113,16 @@
     <script>
         let concertData = [];
 
+        // 줄바꿈 처리를 위한 헬퍼 함수
+        function formatMovement(movement) {
+            if (!movement) return '';
+            // 만약 JSON 데이터가 배열(['1곡', '2곡'])인 경우 줄바꿈 문자로 합쳐줌
+            if (Array.isArray(movement)) {
+                return movement.join('\n');
+            }
+            return movement;
+        }
+
         async function loadConcerts() {
             try {
                 const response = await fetch('./concerts.json');
@@ -124,6 +138,7 @@
 
         function renderDateSelector() {
             const selectElement = document.getElementById('dateSelect');
+            if(!selectElement) return;
             selectElement.innerHTML = '';
             concertData.forEach((concert, index) => {
                 const option = document.createElement('option');
@@ -148,7 +163,7 @@
                         html += `<div class="composer">${work.composer}</div>`;
                         html += `<div class="piece">${work.piece}</div>`;
                         if (work.movement) {
-                            html += `<div class="movement">${work.movement}</div>`;
+                            html += `<div class="movement">${formatMovement(work.movement)}</div>`;
                         }
                         html += '</div>';
                     });
@@ -156,7 +171,7 @@
                     html += `<div class="composer">${program.composer}</div>`;
                     html += `<div class="piece">${program.piece}</div>`;
                     if (program.movement) {
-                        html += `<div class="movement">${program.movement}</div>`;
+                        html += `<div class="movement">${formatMovement(program.movement)}</div>`;
                     }
                 }
                 
