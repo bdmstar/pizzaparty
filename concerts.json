@@ -39,6 +39,9 @@
           "piece": "Chaconne in D minor",
           "movement": "from Violin Partita No. 2, BWV 1004"
         },
+{
+  "intermission": true 
+},
         {
           "order": "06",
           "performer": "가미",
