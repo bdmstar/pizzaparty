@@ -79,6 +79,12 @@
         .program-item:has(+ .intermission-bar) {
             border-bottom: none;
         }
+        /* [추가] 마지막 순서 밑에 맨 위와 똑같은 두꺼운 실선 추가 */
+        #concertContent > .program-item:last-of-type {
+            border-bottom: 3px solid #000; /* header { border-bottom } 스타일과 동일하게 설정 */
+            /* optional: 선과 Footer 사이의 간격을 조금 띄우고 싶다면 아래 주석 제거 */
+            /* margin-bottom: 60px; */ 
+        }
         .composer {
             font-size: 14px;
             font-weight: bold;
