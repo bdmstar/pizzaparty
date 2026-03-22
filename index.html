@@ -148,40 +148,46 @@
             });
         }
 
-        function showConcert(index) {
-            const concert = concertData[index];
-            const contentContainer = document.getElementById('concertContent');
-            document.getElementById('dateSelect').value = index;
+function showConcert(index) {
+    const concert = concertData[index];
+    const contentContainer = document.getElementById('concertContent');
+    document.getElementById('dateSelect').value = index;
 
-            let html = '';
-            concert.programs.forEach((program) => {
-                html += '<div class="program-item">';
-                
-                if (program.works && program.works.length > 0) {
-                    program.works.forEach((work) => {
-                        html += '<div class="work-section">';
-                        html += `<div class="composer">${work.composer}</div>`;
-                        html += `<div class="piece">${work.piece}</div>`;
-                        if (work.movement) {
-                            html += `<div class="movement">${formatMovement(work.movement)}</div>`;
-                        }
-                        html += '</div>';
-                    });
-                } else {
-                    html += `<div class="composer">${program.composer}</div>`;
-                    html += `<div class="piece">${program.piece}</div>`;
-                    if (program.movement) {
-                        html += `<div class="movement">${formatMovement(program.movement)}</div>`;
-                    }
-                }
-                
-                html += '<div class="performer-row">';
-                html += `<span class="performer-name">Pf. ${program.performer}</span>`;
-                html += '</div></div>';
-            });
-
-            contentContainer.innerHTML = html;
+    let html = '';
+    concert.programs.forEach((program) => {
+        // 인터미션 항목인지 확인
+        if (program.intermission) {
+            html += `<div class="intermission-row">Intermission</div>`;
+            return; // 인터미션일 경우 아래 곡 정보 렌더링을 건너뜁니다.
         }
+
+        html += '<div class="program-item">';
+        // ... (기존 곡 정보 렌더링 코드와 동일) ...
+        if (program.works && program.works.length > 0) {
+            program.works.forEach((work) => {
+                html += '<div class="work-section">';
+                html += `<div class="composer">${work.composer}</div>`;
+                html += `<div class="piece">${work.piece}</div>`;
+                if (work.movement) {
+                    html += `<div class="movement">${formatMovement(work.movement)}</div>`;
+                }
+                html += '</div>';
+            });
+        } else {
+            html += `<div class="composer">${program.composer}</div>`;
+            html += `<div class="piece">${program.piece}</div>`;
+            if (program.movement) {
+                html += `<div class="movement">${formatMovement(program.movement)}</div>`;
+            }
+        }
+        
+        html += '<div class="performer-row">';
+        html += `<span class="performer-name">Pf. ${program.performer}</span>`;
+        html += '</div></div>';
+    });
+
+    contentContainer.innerHTML = html;
+}
 
         window.addEventListener('DOMContentLoaded', loadConcerts);
     </script>
